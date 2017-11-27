@@ -95,8 +95,26 @@
 							
 							<div class="serceoption wow fadeIn" data-wow-duration="1.5s">
 								<div class="row">
-                                    <form action="#" method="GET" >
-								        <input type="text" name="search-text" value="{{old('search-text')}}" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                    @if( count($errors) > 0)
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach($errors->all() as $error)
+                                                    <li>{{$error}}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    @endif
+                                    @if( Session::has('flash_message'))
+                                        <div class="alert alert-{{ Session::get('flash_level')}}">
+                                            {{ Session::get('flash_message')}}
+                                        </div>
+                                    @endif
+                                    <form action="{{ URL::route('searchRequest')}}" method="POST" >
+                                        <input type="hidden" name="_token" value="{{ csrf_token()}}">
+                                        <input type="text" placeholder="Nhập từ khóa..." class="form-control" name="search_text" id="search_text">
+                                        <!-- <button type="submit" class="btn btn-default">Add</button> -->
+								        
                                     </form>
                                 </div>
 							</div>

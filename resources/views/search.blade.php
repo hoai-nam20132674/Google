@@ -37,38 +37,85 @@
         <script src="{{asset('js/vendor/modernizr-2.8.3-respond-1.4.2.min.js')}}"></script>
         <script type="text/javascript">
                 $(document).ready(function () {
+                    
+                        // var request= $("#search_text").val()
+                        // function load() {
+                        //     // var request = $('input[name=search_text]').val();
+                        //     $.ajax({ //create an ajax request to load_page.php
+                        //         type: "GET",
+                        //         url: "http://localhost:9099/search?query="+request+"&page=1",
+                        //         dataType: "json", //expect html to be returned                
+                        //         success: function (data) {
+                        //             // $("#display").html(data);
+                        //             // console.log(data);
+                        //             var quantity=data.quantity;
+                        //             var html_str = '<div class="row"><div class="col-sm-1"></div><div class="col-sm-11"><a style="color: #545454; margin-top: -10px;font-family: Sans-serif;">Khoảng '+quantity+' kết quả (0,01 giây)</a></div></div><br><div class="article"><div class="row"><div class="col-sm-1"></div>';
+                        //             for(var i=0; i< data.data.length; i++){
 
-                    function load() {
-                        $.ajax({ //create an ajax request to load_page.php
-                            type: "GET",
-                            url: "http://localhost:9099/search?query=t%C3%ACm%20ki%E1%BA%BFm%20th%C3%B4ng%20tin&page=10",
-                            dataType: "json", //expect html to be returned                
-                            success: function (data) {
-                                // $("#display").html(data);
-                                // console.log(data);
-                                var quantity=data.quantity;
-                                var html_str = '<div class="row"><div class="col-sm-1"></div><div class="col-sm-11"><a style="color: #545454; margin-top: -10px;font-family: Sans-serif;">Khoảng '+quantity+' kết quả (0,01 giây)</a></div></div><br><div class="article"><div class="row"><div class="col-sm-1"></div>';
-                                for(var i=0; i< data.data.length; i++){
+                        //             	var url= data.data[i].url;
+                        //             	var title=data.data[i].title;
+                        //             	var snippet=data.data[i].snippet;
+                        //                 // var request = $('input[name=search_text]').val();
+                        //                 <?php
+                        //                 $text = text_limit('url',20);
+                        //                 ?>
 
-                                	var url= data.data[i].url;
-                                	var title=data.data[i].title;
-                                	var snippet=data.data[i].snippet;
+                        //             	html_str += '<div class=" test col-sm-11"><a href="'+url+'" target="_blank" ><h5 class="title" style="color: #1a0dab; font-size: 19px; margin-top: 1px;font-family: Sans-serif;">' + title + '</h5></a></div></div><div class="row"><div class="col-sm-1"></div><div class="col-sm-11"><h6 class="Url" style="color: #006621; margin-top: -13px;font-family: Sans-serif;">' + url  + '</h6></div></div></div><div class="row"><div class="col-sm-1"></div><div class="col-sm-11"><a class="info" style="color: #545454; margin-top: -10px;font-family: Sans-serif;">'+snippet+'</a></div></div><br><div class="article"><div class="row"><div class="col-sm-1"></div>';
+                                        
+                        //             }
 
-                                	html_str += '<div class=" test col-sm-11"><a href="url" target="_blank" ><h5 class="title" style="color: #1a0dab; font-size: 19px; margin-top: 1px;font-family: Sans-serif;">' + title + '</h5></a></div></div><div class="row"><div class="col-sm-1"></div><div class="col-sm-11"><h6 class="Url" style="color: #006621; margin-top: -13px;font-family: Sans-serif;">' + url + '</h6></div></div></div><div class="row"><div class="col-sm-1"></div><div class="col-sm-11"><a class="info" style="color: #545454; margin-top: -10px;font-family: Sans-serif;">'+snippet+'</a></div></div><br><div class="article"><div class="row"><div class="col-sm-1"></div>';
-                                }
+                        //             $('#display').html(html_str);
+                        //             console.log(data);
+                                   
+                        //         }
+                        //     });
 
-                                $('#display').html(html_str);
-                                console.log(data);
-                               
-                            }
-                        });
-                    }
+                        // }
+                    // });
+                    $("#search_text").keypress(function (e) {
+                        if ((e.keyCode == 13)){
+                            e.preventDefault();
+                            var request= $("#search_text").val()
+                            
+                                // var request = $('input[name=search_text]').val();
+                                $.ajax({ //create an ajax request to load_page.php
+                                    type: "GET",
+                                    url: "http://localhost:9099/search?query="+request+"&page=1",
+                                    dataType: "json", //expect html to be returned                
+                                    success: function (data) {
+                                        // $("#display").html(data);
+                                        // console.log(data);
+                                        var quantity=data.quantity;
+                                        var html_str = '<div class="row"><div class="col-sm-1"></div><div class="col-sm-11"><a style="color: #545454; margin-top: -10px;font-family: Sans-serif;">Khoảng '+quantity+' kết quả (0,01 giây)</a></div></div><br><div class="article"><div class="row"><div class="col-sm-1"></div>';
+                                        for(var i=0; i< data.data.length; i++){
 
-                    load(); //if you don't want the click
+                                            var url= data.data[i].url;
+                                            var title=data.data[i].title;
+                                            var snippet=data.data[i].snippet;
+                                            // var request = $('input[name=search_text]').val();
+                                            <?php
+                                            $text = text_limit('url',20);
+                                            ?>
+
+                                            html_str += '<div class=" test col-sm-11"><a href="'+url+'" target="_blank" ><h5 class="title" style="color: #1a0dab; font-size: 19px; margin-top: 1px;font-family: Sans-serif;">' + title + '</h5></a></div></div><div class="row"><div class="col-sm-1"></div><div class="col-sm-11"><h6 class="Url" style="color: #006621; margin-top: -13px;font-family: Sans-serif;">' + url  + '</h6></div></div></div><div class="row"><div class="col-sm-1"></div><div class="col-sm-11"><a class="info" style="color: #545454; margin-top: -10px;font-family: Sans-serif;">'+snippet+'</a></div></div><br><div class="article"><div class="row"><div class="col-sm-1"></div>';
+                                            
+                                        }
+
+                                        $('#display').html(html_str);
+                                        console.log(data);
+                                       
+                                    }
+                                });
+
+                            
+                        }
+                    // load(); //if you don't want the click
                     // $("#click").click(load); //if you want to start the display on click
+                    });
                 });
         </script>
     </head>
+    
     <body data-spy="scroll" data-target="#navmenu">
         
         <header id="main_menu" class="header">
@@ -76,21 +123,40 @@
             <div class="main_menu_bg ">
                 <div class="container">
                     <div class="row " style=" margin-top: 0px;">
+                        @if( count($errors) > 0)
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>{{$error}}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        @endif
+                        @if( Session::has('flash_message'))
+                            <div class="alert alert-{{ Session::get('flash_level')}}">
+                                {{ Session::get('flash_message')}}
+                            </div>
+                        @endif
                         <div class="col-sm-1" style="padding: 5px;">
-                            <!-- <div class="col-sm-4 col-sm-offset-5" style="margin-left: 37%;"> -->
+                            
                                 <img src="{{asset('image/google.png')}}" alt="Mountain View" style="width: 100%;">
                         </div>
                         <div class="col-sm-6">
-                                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                
+                                        <input type="text" placeholder="Nhập từ khóa..." class="form-control" name="search_text" id="search_text" value="{{old('search_text')}}">
+                                        
+                                
                         </div>
                         <div class="col-sm-2">
                             
                         </div>
                         <div class="col-sm-3" style="margin-top: 10px;">
-                            
+                       
                             <div class="col-sm-1">
                                 <span>Gmail</span>
                             </div>
+                        
                             <div class="col-sm-1">
                             </div>
                             <div class="col-sm-2">
@@ -140,6 +206,7 @@
                 <div id="display">
                     
                 </div>
+                
                 <ul class="pager">
                         <li class="previous">
                             <a href="#">&larr; Older</a>
@@ -158,4 +225,5 @@
         <script src="{{asset('js/main.js')}}"></script>
 
     </body>
+    
 </html>
