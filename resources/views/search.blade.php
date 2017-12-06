@@ -10,16 +10,11 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-        <!--<link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,600,700' rel='stylesheet' type='text/css'>-->
         <link rel="stylesheet" href="{{asset('css/fonticons.css')}}">
         <link rel="stylesheet" href="{{asset('fonts/stylesheet.css')}}">
         <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
         <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
-        <!--        <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">-->
 
-
-        <!--For Plugins external css-->
         <link rel="stylesheet" href="{{asset('css/plugins.css')}}">
 
         <!--Theme custom css -->
@@ -29,144 +24,11 @@
         <link rel="stylesheet" href="{{asset('css/responsive.css')}}">
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
         <script src="{{asset('js/vendor/modernizr-2.8.3-respond-1.4.2.min.js')}}"></script>
+        <script src="{{asset('js/ajax.js')}}"></script>
         
-        <script type="text/javascript">
-                $(document).ready(function () {
-
-                    var request= $("#search_text").val()
-                    
-                    $("#search_text").keypress(function (e) {
-                        if (e.keyCode == 13){
-                            e.preventDefault();
-                            var request= $("#search_text").val()
-                                
-                                $.ajax({ //create an ajax request to load_page.php
-                                    type: "GET",
-                                    url: "http://localhost:9099/search?query="+request+"&page=1",
-                                    dataType: "json", //expect html to be returned                
-                                    success: function (data) {
-                                        
-                                        
-                                        
-                                        var quantity=data.quantity;
-                                        var html_str = '<div class="row"><div class="col-sm-1"></div><div class="col-sm-11"><a style="color: #545454; margin-top: -10px;font-family: Sans-serif;">Khoảng '+quantity+' kết quả (0,01 giây)</a></div></div><br><div class="article"><div class="row"><div class="col-sm-1"></div>';
-                                        for(var i=0; i< data.data.length; i++){
-
-                                            var url= data.data[i].url;
-                                            var title=data.data[i].title;
-                                            var snippet=data.data[i].snippet;
-                                            
-
-                                            html_str += '<div class=" test col-sm-11"><a href="'+url+'" target="_blank" ><h5 class="title" style="color: #1a0dab; font-size: 19px; margin-top: 1px;font-family: Sans-serif;">' + title + '</h5></a></div></div><div class="row"><div class="col-sm-1"></div><div class="col-sm-11"><h6 class="Url" style="color: #006621; margin-top: -13px;font-family: Sans-serif;">' + url  + '</h6></div></div></div><div class="row"><div class="col-sm-1"></div><div class="col-sm-11"><a class="info" style="color: #545454; margin-top: -10px;font-family: Sans-serif;">'+snippet+'</a></div></div><br><div class="article"><div class="row"><div class="col-sm-1"></div>';
-                                            
-                                        }
-                                        $('#display').html(html_str);
-                                        
-                                        var page_total = Math.floor(quantity/10)+1;
-                                        $("#pagination-demo").twbsPagination({
-
-
-                                            totalPages: page_total,
-                                            visiblePages: 7,
-                                            onPageClick: function (event, page) {
-                                                
-                                                var request= $("#search_text").val()
-                                                // alert(request);
-                                                $.ajax({ //create an ajax request to load_page.php
-                                                    type: "GET",
-                                                    url: "http://localhost:9099/search?query="+request+"&page="+page+"",
-                                                    dataType: "json", //expect html to be returned                
-                                                    success: function (data) {
-                                                        
-                                                        // var quantity=data.quantity;
-                                                        // var page_total = Math.floor(quantity/10)+1;
-                                                        var html_str = '<div class="row"><div class="col-sm-1"></div><div class="col-sm-11"><a style="color: #545454; margin-top: -10px;font-family: Sans-serif;">Khoảng '+quantity+' kết quả (0,01 giây)</a></div></div><br><div class="article"><div class="row"><div class="col-sm-1"></div>';
-                                                        for(var i=0; i< data.data.length; i++){
-
-                                                            var url= data.data[i].url;
-                                                            var title=data.data[i].title;
-                                                            var snippet=data.data[i].snippet;
-                                                            
-
-                                                            html_str += '<div class=" test col-sm-11"><a href="'+url+'" target="_blank" ><h5 class="title" style="color: #1a0dab; font-size: 19px; margin-top: 1px;font-family: Sans-serif;">' + title + '</h5></a></div></div><div class="row"><div class="col-sm-1"></div><div class="col-sm-11"><h6 class="Url" style="color: #006621; margin-top: -13px;font-family: Sans-serif;">' + url  + '</h6></div></div></div><div class="row"><div class="col-sm-1"></div><div class="col-sm-11"><a class="info" style="color: #545454; margin-top: -10px;font-family: Sans-serif;">'+snippet+'</a></div></div><br><div class="article"><div class="row"><div class="col-sm-1"></div>';
-                                                            
-                                                        }
-                                                    $('#display').html(html_str);
-
-                                                    }
-                                                });
-                                            
-                                                
-                                            }
-                                        });
-
-                                        // $('#display').html(html_str);
-                                        console.log(data);
-                                       
-                                    }
-
-                                });
-                            
-                        }
-                         //end if
-                    
-                    });
-
-                    // $.ajax({ //create an ajax request to load_page.php
-                    //     type: "GET",
-                    //     url: "http://localhost:9099/search?query="+request+"&page=1",
-                    //     dataType: "json", //expect html to be returned                
-                    //     success: function (data) {
-
-
-                    //         // $("#pagination-demo").twbsPagination({
-
-                    //         //     totalPages: data.quantity,
-                    //         //     visiblePages: 7,
-                    //         //     onPageClick: function (event, page) {
-                                    
-                    //         //         var request= $("#search_text").val()
-
-                    //         //         alert(data.data.length);
-                    //         //     }
-                    //         // });
-                            
-                    //     }
-                    // });
-                    
-                    // $.ajax({ //create an ajax request to load_page.php
-                    //     type: "GET",
-                    //     url: "http://localhost:9099/search?query="+request+"&page=1",
-                    //     dataType: "json", //expect html to be returned                
-                    //     success: function (data) {
-                            
-                    //         var quantity=data.quantity;
-                    //         // var page_total = Math.floor(quantity/10)+1;
-                    //         var html_str = '<div class="row"><div class="col-sm-1"></div><div class="col-sm-11"><a style="color: #545454; margin-top: -10px;font-family: Sans-serif;">Khoảng '+quantity+' kết quả (0,01 giây)</a></div></div><br><div class="article"><div class="row"><div class="col-sm-1"></div>';
-                    //         for(var i=0; i< data.data.length; i++){
-
-                    //             var url= data.data[i].url;
-                    //             var title=data.data[i].title;
-                    //             var snippet=data.data[i].snippet;
-                                
-
-                    //             html_str += '<div class=" test col-sm-11"><a href="'+url+'" target="_blank" ><h5 class="title" style="color: #1a0dab; font-size: 19px; margin-top: 1px;font-family: Sans-serif;">' + title + '</h5></a></div></div><div class="row"><div class="col-sm-1"></div><div class="col-sm-11"><h6 class="Url" style="color: #006621; margin-top: -13px;font-family: Sans-serif;">' + url  + '</h6></div></div></div><div class="row"><div class="col-sm-1"></div><div class="col-sm-11"><a class="info" style="color: #545454; margin-top: -10px;font-family: Sans-serif;">'+snippet+'</a></div></div><br><div class="article"><div class="row"><div class="col-sm-1"></div>';
-                                
-                    //         }
-                    //         $('#display').html(html_str);
-                    //         // console.log(data);
-                    //     }
-                    // });
-                    
-
-                });
-        </script>
     </head>
     
     <body data-spy="scroll" data-target="#navmenu">
