@@ -1,2 +1,1 @@
-# Google
-Search
+Đọc trong file README.pdf
