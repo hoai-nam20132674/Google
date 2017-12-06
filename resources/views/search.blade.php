@@ -59,9 +59,7 @@
                         </div>
                         <div class="col-sm-6">
                                 
-                                        <input type="text" placeholder="Nhập từ khóa..." class="form-control" name="search_text" id="search_text" value="{{old('search_text')}}">
-                                        
-                                
+                                        <input type="text" placeholder="Nhập từ khóa..." class="form-control" name="search_text" id="search_text" value="{{old('search_text')}}">     
                         </div>
                         <div class="col-sm-2">
                             
@@ -121,28 +119,12 @@
                 <div id="display">
                     
                 </div>
-                <!-- <div id="page-content" class="page-content">Page 1</div> -->
                 
-                <!-- <ul class="pager"> -->
                 <div class="row">
                     <div class="col-sm-1"></div>
                     <div class="col-sm-11">
                         <ul id="pagination-demo" class="pagination pagination-sm">
-                            <!-- <li></li> -->
-                            <!-- <li >
-                                <a href="#">&larr; Trước</a>
-                            </li>
                             
-                            <li class="active"><a href="#" >1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            
-                            <li >
-                                <a href="#">Tiếp &rarr;</a>
-                            </li> -->
-                            <!-- <li></li> -->
                         </ul>
                     </div>
                 </div>      
