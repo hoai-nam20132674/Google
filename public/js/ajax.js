@@ -20,24 +20,35 @@ $(document).ready(function () {
 
 
                         var url= data.data[i].url;
+                        var title="";
+                        var titles=data.data[i].title;
+                        var title_array =titles.split(" ");
+                        if(title_array.length>15){
+                            for(var b=0;b<=15;b++){
+                                title=title.concat(title_array[b]).concat(" ");
+                            }
+                            title=title.concat("...");
 
-                        var title=data.data[i].title;
+                        }
+                        else{
+                            title=titles;
+                        }
                         var snippet="";
                         var snippets=data.data[i].snippet;
-                        var array = snippets.split(" ");
-                        if(array.length>50){
+                        var snippet_array = snippets.split(" ");
+                        if(snippet_array.length>50){
                             
                             for(var a=0;a<=50;a++){
-                                snippet=snippet.concat(array[a]).concat(" ");
+                                snippet=snippet.concat(snippet_array[a]).concat(" ");
 
                             }
-                            // snippet=snippet.concat("...");
+                            snippet=snippet.concat("...");
                         }
                         else{
                             snippet=snippets;
                         }
 
-                        html_str += '<div class=" test col-sm-11"><a href="'+url+'" target="_blank" ><h5 class="title" style="color: #1a0dab; font-size: 19px; margin-top: 1px;font-family: Sans-serif;">' + title + '</h5></a></div></div><div class="row"><div class="col-sm-1"></div><div class="col-sm-11"><h6 class="Url" style="color: #006621; margin-top: -13px;font-family: Sans-serif;">' + url+ '</h6></div></div><div class="row"><div class="col-sm-1"></div><div class="col-sm-11"><a class="info" style="color: #545454; margin-top: -10px;font-family: Sans-serif;">'+snippet+'</a></div></div><br><div class="article"><div class="row"><div class="col-sm-1"></div>';
+                        html_str += '<div class=" test col-sm-11"><a href="'+url+'" target="_blank" ><h5 class="title" style="color: #1a0dab; font-size: 19px; margin-top: 1px;font-family: Sans-serif;">' + title + '</h5></a></div></div><div class="row"><div class="col-sm-1"></div><div class="col-sm-11"><h6 class="Url" style="color: #006621; margin-top: -13px;font-family: Sans-serif;">' + url.substring(0,80)+ '...</h6></div></div><div class="row"><div class="col-sm-1"></div><div class="col-sm-7"><a class="info" style="color: #545454; margin-top: -10px;font-family: Sans-serif;">'+snippet+'</a></div><div class="col-sm-4"></div></div><br><div class="article"><div class="row"><div class="col-sm-1"></div>';
                         
                     }
                     $('#display').html(html_str);
@@ -59,19 +70,34 @@ $(document).ready(function () {
                                     var html_str2 = '<div class="row"><div class="col-sm-1"></div><div class="col-sm-11"><a style="color: #545454; margin-top: -10px;font-family: Sans-serif;">Khoảng '+quantity+' kết quả (0,01 giây)</a></div></div><br><div class="article"><div class="row"><div class="col-sm-1"></div>';
                                     for(var i=0; i< data.data.length; i++){
 
+                                        
                                         var url= data.data[i].url;
-                                        var title=data.data[i].title;
+                                        
+
+                                        var title="";
+                                        var titles=data.data[i].title;
+                                        var title_array =titles.split(" ");
+                                        if(title_array.length>15){
+                                            for(var b=0;b<=15;b++){
+                                                title=title.concat(title_array[b]).concat(" ");
+                                            }
+                                            title=title.concat("...");
+
+                                        }
+                                        else{
+                                            title=titles;
+                                        }
                                         var snippet="";
                                         var snippets=data.data[i].snippet;
-                                        var array = snippets.split(" ");
-                                        if(array.length>50){
+                                        var snippet_array = snippets.split(" ");
+                                        if(snippet_array.length>50){
                                             
                                             for(var a=0;a<=50;a++){
                                                 
-                                                snippet=snippet.concat(array[a]).concat(" ");
+                                                snippet=snippet.concat(snippet_array[a]).concat(" ");
  
                                             }
-                                            // snippet=snippet.concat("...");
+                                            snippet=snippet.concat("...");
                                         }
                                         else{
                                             snippet=snippets;
@@ -79,7 +105,7 @@ $(document).ready(function () {
 
                                         
 
-                                        html_str2 += '<div class=" test col-sm-11"><a href="'+url+'" target="_blank" ><h5 class="title" style="color: #1a0dab; font-size: 19px; margin-top: 1px;font-family: Sans-serif;">' + title + '</h5></a></div></div><div class="row"><div class="col-sm-1"></div><div class="col-sm-11"><h6 class="Url" style="color: #006621; margin-top: -13px;font-family: Sans-serif;">' + url+ '</h6></div></div><div class="row"><div class="col-sm-1"></div><div class="col-sm-11"><a class="info" style="color: #545454; margin-top: -10px;font-family: Sans-serif;">'+snippet+'</a></div></div><br><div class="article"><div class="row"><div class="col-sm-1"></div>';
+                                        html_str2 += '<div class=" test col-sm-11"><a href="'+url+'" target="_blank" ><h5 class="title" style="color: #1a0dab; font-size: 19px; margin-top: 1px;font-family: Sans-serif;">' + title + '</h5></a></div></div><div class="row"><div class="col-sm-1"></div><div class="col-sm-11"><h6 class="Url" style="color: #006621; margin-top: -13px;font-family: Sans-serif;">' + url.substring(0,80)+ '...</h6></div></div><div class="row"><div class="col-sm-1"></div><div class="col-sm-7"><a class="info" style="color: #545454; margin-top: -10px;font-family: Sans-serif;">'+snippet+'</a></div><div class="col-sm-4"></div></div><br><div class="article"><div class="row"><div class="col-sm-1"></div>';
                                         
                                     }
                                 $('#display').html(html_str2);
