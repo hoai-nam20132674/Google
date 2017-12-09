@@ -87,7 +87,6 @@ $(document).ready(function () {
                                             for(var a=0;a<=50;a++){
                                                 
                                                 snippet=snippet.concat(snippet_array[a]).concat(" ");
- 
                                             }
                                             snippet=snippet.concat("...");
                                         }
@@ -105,14 +104,10 @@ $(document).ready(function () {
                         }
                     });
                     console.log(data);
-                   
                 }
-
             });
-            
         }
          //end if
-    
     });
 
 });
